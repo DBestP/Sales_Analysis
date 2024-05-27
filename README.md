@@ -2,47 +2,59 @@
 
 ![](Sales_Analysis.jpg)
 
+***
 ### **Tools used: MSSQL**
 
+***
 ### Introduction:
+This dataset is detailed sales data, with customer information, sales details, product details, and order transactional records like business location, etc.  By analyzing this data, we aim to uncover trends, patterns, and actionable insights that can enhance strategic decisions for the continued success and improvement of the Superstore.
 
-This dataset is basically a detailed sales data, with customers information, sales detail, product details, and order transactional records like business location etc.  By analysing this data, we aim to uncover trends, patterns, and actionable insights that can enhance strategic decisions for the continued success and improvement of the Superstore.
-
+***
  ### Problem Statement
+I want to determine the sales performance, identify the key factors influencing the sales performance and propose actionable strategies to optimize revenue, reduce costs, and enhance customer satisfaction within the Superstore.
 
-I want to determine the sales performance and identify the key factors influencing the sales performance and propose actionable strategies to optimize revenue, reduce costs, and enhance customer satisfaction within the Superstore.
+***
+# Project Scope
 
-### Project Scope
-1.	**Sales and Profit Analysis:**
--	Calculate total sales amount for each category.
-- Determine total profit for each sub-category.
+## 1. Sales and Profit Analysis
+- Calculate the total sales amount for each category.
+- Determine the total profit for each sub-category.
 - Explore average profit margins for individual products.
-2. **Discount Insights:**
--	Compute average discounts for different customer segments.
--	Identify the region with the highest average discount.
-3.	**Geographical Trends:**
--	Determine the country with the highest total sales.
--	Analyse sales by state and city (e.g., highest average sales per order).
-4.	**Yealy, Monthly Insights:**
--	Summarize total sales by year and month.
--	Investigate monthly sales trends.
-5.	**Product-Level Metrics:**
--	Quantify quantity sold for each product.
-6	**Customer-Centric Metrics:**
--	Find total sales amount for each customer.
-7.	**Shipping Modes and Profitability:**
--	Explore total sales by ship mode.
--	Assess overall profit by state.
-8.	**Top-Performing Product:**
--	Identify the product with the highest total sales amount.
-9.**Order Profitability:**
--	Compute average order profit for each category.
 
+## 2. Discount Insights
+- Compute average discounts for different customer segments.
+- Identify the region with the highest average discount.
+
+## 3. Geographical Trends
+- Determine the country with the highest total sales.
+- Analyse sales by state and city (e.g., highest average sales per order).
+
+## 4. Yearly and Monthly Insights
+- Summarize total sales by year and month.
+- Investigate monthly sales trends.
+
+## 5. Product-Level Metrics
+- Quantify the quantity sold for each product.
+
+## 6. Customer-Centric Metrics
+- Find the total sales amount for each customer.
+
+## 7. Shipping Modes and Profitability
+- Explore total sales by ship mode.
+- Assess overall profit by state.
+
+## 8. Top-Performing Product
+- Identify the product with the highest total sales amount.
+
+## 9. Order Profitability
+- Compute average order profit for each category.
+
+***
 ### SQL Analysis
-
   1.	**Sales and Profit Analysis:**
--	Calculate total sales amount for each category.
+- Calculate total sales amount for each category.
 ```Sql
+-- Calculate total sales amount for each category.
 select category,
 Round (sum (sales),2) As Total_Sales
 from Superstore
@@ -52,7 +64,7 @@ group by category;
 ``` 
 
 - Determine total profit for each sub-category.
-```Sql
+```SQL
 Select 
 Sub_Category, Round (sum (Profit),2) As Total_Sub_Profit
 from Superstore
@@ -72,6 +84,7 @@ order by Avg_Profit_Magin desc;
 --particulaly on underperforming products
 ```
 
+***
 2. **Discount Insights:**
 -	Compute average discounts for different customer segments.
 ```sql
@@ -93,6 +106,8 @@ order by Average_Discount;
  Order by Avg_Reg_Discount desc;
  -- This returns regions with the highest average discount
 ```
+
+***
 3.	**Geographical Trends:**
 -	Determine the State with the highest total sales.
   ```sql
@@ -114,6 +129,8 @@ Group by State
  select * from Superstore
  -- This is to determine the location with the highest avg sales.
 ```
+
+***
 4.	**Yealy, Monthly Insights:**
 -	Summarize total sales by year and month.
   
@@ -138,6 +155,8 @@ Round(sum(sales),2) as Total_Sales_per_Month
  order by Total_Sales_per_Month;
  -- This returns the sales according to months.
 ```
+
+***
 5.	**Product-Level Metrics:**
 -	Quantify quantity sold for each product.
   ```sql
@@ -150,6 +169,8 @@ order by Qty_Sold desc
 -- thereby making a decision on the product performance.
 -- for example, only 1 quantiy of xerox 20 was sold within the years in review.
 ```
+
+***
 6	**Customer-Centric Metrics:**
 -	Find total sales amount for each customer.
 ```sql
@@ -158,6 +179,8 @@ order by Qty_Sold desc
  group by customer_name
  order by Total_sales desc;
 ```
+
+***
 7	**Shipping Modes and Profitability:**
 -	Explore total sales by ship mode.
 ```sql
@@ -174,6 +197,8 @@ Select State, Round(sum(profit),2) as Total_Profit
  order by Total_Profit;
  -- This returns the profit or loss made by each state
 ```
+
+***
 8.	**Top-Performing Product:**
 -	Identify the product with the highest total sales amount.
   ```sql
@@ -184,6 +209,8 @@ Select State, Round(sum(profit),2) as Total_Profit
  order by Highest_sales desc
  -- Here is to determine the product that made the highest sales.
 ```
+
+***
 9.**Order Profitability:**
 -	Compute average order profit for each category.
 ```sql
@@ -194,37 +221,35 @@ Select State, Round(sum(profit),2) as Total_Profit
  GROUP BY CATEGORY
  --THIS RETURNS AVERAGE PROFIT MADE FROM EACH OF THE PRODUCT CATEGORIES
 ```
-### Recommendations
-1.	**Category-Specific Strategies:**
--	Focus on high-performing categories (e.g., Technology, Furniture).
--	Allocate resources strategically based on sales contribution from each category.
-2.	**Profit Optimization:**
--	Investigate sub-categories with low profit margins.
--	Explore cost-saving measures or pricing adjustments.
-3.	**Segment-Specific Discounts:**
--	Tailor discount strategies for different customer segments.
--	Optimize discounts to balance profitability and customer satisfaction.
-4.	**Geographical Insights:**
--	Prioritize countries with substantial sales (e.g., United States).
--	Consider localized marketing efforts and inventory management.
-5.	**Yearly Trends:**
--	Monitor yearly sales fluctuations.
--	Align business strategies with seasonal patterns.
-6.	**Product-Level Decisions:**
--	Promote top-selling products.
--	Evaluate low-selling products for potential discontinuation.
-7.	**City-Level Sales Enhancement:**
--	Identify cities with high average sales per order (e.g., New York).
--	Target marketing campaigns and improve supply chain efficiency.
-8.	**Customer-Centric Approach:**
--	Recognize top-spending customers.
--	Enhance personalized experiences and loyalty programs.
-9.	**Region-Specific Discounts:**
--	Analyse regions with high average discounts.
--	Balance discounting to maintain profitability.
-10.	**Shipping Mode Optimization:**
--	Assess sales by ship mode (e.g., Standard Class, Express).
--	Optimize logistics and delivery options.
 
+***
+# Sales Strategy Recommendations
 
+1. **Strategic Resource Allocation**
+   - Prioritize inventory and marketing efforts for high-performing categories.
+   - Allocate additional resources to support growth in these key areas.
+   - Invest in categories that significantly contribute to overall sales.
+
+2. **Cost and Pricing Optimization**
+   - Identify and address high-cost areas to improve margins.
+   - Implement cost-saving practices across the supply chain.
+   - Consider price adjustments to enhance profitability.
+
+3. **Tailored Discount Strategies**
+   - Customize discounts for different customer groups to boost satisfaction and loyalty.
+   - Ensure discounts are balanced to maintain profitability while attracting customers.
+
+4. **Geographical and Seasonal Focus**
+   - Focus marketing and inventory efforts on high-sales regions.
+   - Develop localized marketing campaigns to cater to regional preferences and needs.
+   - Align business strategies with observed seasonal sales trends.
+
+5. **Product and Customer Management**
+   - Promote high-demand products through increased marketing efforts.
+   - Evaluate and consider discontinuing low-selling products.
+   - Enhance loyalty programs and personalized interactions for high-value customers.
+   - Optimize logistics and delivery options to improve customer satisfaction and cost efficiency.
+
+***
+Thank you for taking the time to explore this project. Your interest and attention are genuinely appreciated. If you have any contributions or suggestions, I welcome the opportunity to connect and discuss any ideas you may have. Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/bestman-peter/). I would love to engage in a conversation and hear your thoughts. Looking forward to connecting!
 
